@@ -1,0 +1,48 @@
+  ▲ Next.js 14.2.35
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/25) ...
+   Generating static pages (6/25) 
+   Generating static pages (12/25) 
+   Generating static pages (18/25) 
+ ✓ Generating static pages (25/25)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    4.43 kB         143 kB
+├ ○ /_not-found                          873 B          88.1 kB
+├ ○ /admin                               3.44 kB         105 kB
+├ ○ /admin/analytics                     3.21 kB          95 kB
+├ ○ /admin/documents                     6.71 kB          94 kB
+├ ○ /admin/employees                     5.57 kB        92.8 kB
+├ ○ /admin/request                       1.94 kB         129 kB
+├ ○ /apple-icon.png                      0 B                0 B
+├ ○ /apply                               2.88 kB         104 kB
+├ ○ /apply/onboarding                    1.99 kB         137 kB
+├ ○ /chat                                6.17 kB         141 kB
+├ ○ /icon.svg                            0 B                0 B
+├ ○ /legal                               2.81 kB         141 kB
+├ ○ /login                               2.77 kB         103 kB
+├ ○ /register                            3.2 kB          104 kB
+├ ○ /superadmin                          2.15 kB         103 kB
+├ ○ /superadmin/analytics                2.28 kB        94.1 kB
+├ ○ /superadmin/applications             4.48 kB         101 kB
+├ ƒ /superadmin/applications/[id]        2.18 kB         104 kB
+├ ƒ /superadmin/companies/[id]           4.84 kB         102 kB
+├ ○ /superadmin/content                  6.53 kB         145 kB
+├ ○ /superadmin/evaluation               5.99 kB        93.3 kB
+├ ○ /superadmin/model-eval               18 kB           105 kB
+└ ○ /superadmin/rag                      11 kB          98.3 kB
++ First Load JS shared by all            87.3 kB
+  ├ chunks/117-2b5f8e9a6f50682c.js       31.7 kB
+  ├ chunks/fd9d1056-13f2035e4b026c54.js  53.6 kB
+  └ other shared chunks (total)          1.9 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

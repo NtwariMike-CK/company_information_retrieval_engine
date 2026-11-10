@@ -1,0 +1,940 @@
+{
+ "note": "Produced with the built-in TEST AI providers (hashing embedder + scripted LLM). Shows the evaluation machinery works; it is NOT a measurement of Gemini quality.",
+ "dataset": "starter benchmark (4 documents, 21 questions, EN+RW)",
+ "retrieval": {
+  "id": "7956c701-7674-4f35-8f2b-f48dc6b01e39",
+  "dataset_id": "e97c0890-283e-4bd4-bb72-8ff6468c7bb7",
+  "kind": "retrieval",
+  "status": "completed",
+  "params": {
+   "mode": "oracle",
+   "use_judge": true,
+   "pause_seconds": 0
+  },
+  "config_snapshot": {
+   "llm": {
+    "model": "gemini-3.8-flash",
+    "provider": "fake",
+    "temperature": 0.2
+   },
+   "chunking": {
+    "overlap": 20,
+    "strategy": "parent_child",
+    "child_size": 200,
+    "chunk_size": 800,
+    "parent_size": 600,
+    "language_aware": true
+   },
+   "cleaning": {
+    "fix_hyphenation": true,
+    "merge_soft_wraps": true,
+    "normalize_unicode": true,
+    "collapse_whitespace": true,
+    "remove_headers_footers": true,
+    "drop_duplicate_paragraphs": false
+   },
+   "embedding": {
+    "model": "gemini-embedding-2",
+    "provider": "fake",
+    "dimensions": 768
+   },
+   "retrieval": {
+    "dense": {
+     "top_k": 20,
+     "enabled": true
+    },
+    "rrf_k": 60,
+    "fusion": "rrf",
+    "sparse": {
+     "top_k": 20,
+     "enabled": true
+    },
+    "final_k": 4,
+    "reranker": null,
+    "min_score": 0.25,
+    "query_transform": "followup_concat"
+   },
+   "config_version": 5
+  },
+  "progress_pct": 100,
+  "message": "Completed",
+  "summary": {
+   "kind": "retrieval",
+   "modes": {
+    "dense": {
+     "n": 17,
+     "map": 0.6738,
+     "mrr": 0.6738,
+     "hit@1": 0.6471,
+     "hit@3": 0.6471,
+     "hit@5": 0.6471,
+     "hit@10": 0.8824,
+     "ndcg@10": 0.7184,
+     "recall@5": 0.6471,
+     "recall@10": 0.8824,
+     "hit@1_ci95": [
+      0.413,
+      0.8269
+     ],
+     "hit@5_ci95": [
+      0.413,
+      0.8269
+     ],
+     "precision@1": 0.6471,
+     "precision@3": 0.2157,
+     "precision@5": 0.1294
+    },
+    "hybrid": {
+     "n": 17,
+     "map": 0.7242,
+     "mrr": 0.7242,
+     "hit@1": 0.7059,
+     "hit@3": 0.7059,
+     "hit@5": 0.7059,
+     "hit@10": 0.8824,
+     "ndcg@10": 0.7576,
+     "recall@5": 0.7059,
+     "recall@10": 0.8824,
+     "hit@1_ci95": [
+      0.4687,
+      0.8672
+     ],
+     "hit@5_ci95": [
+      0.4687,
+      0.8672
+     ],
+     "precision@1": 0.7059,
+     "precision@3": 0.2353,
+     "precision@5": 0.1412
+    },
+    "sparse": {
+     "n": 17,
+     "map": 0.7059,
+     "mrr": 0.7059,
+     "hit@1": 0.7059,
+     "hit@3": 0.7059,
+     "hit@5": 0.7059,
+     "hit@10": 0.7059,
+     "ndcg@10": 0.7059,
+     "recall@5": 0.7059,
+     "recall@10": 0.7059,
+     "hit@1_ci95": [
+      0.4687,
+      0.8672
+     ],
+     "hit@5_ci95": [
+      0.4687,
+      0.8672
+     ],
+     "precision@1": 0.7059,
+     "precision@3": 0.2353,
+     "precision@5": 0.1412
+    }
+   },
+   "latency": {
+    "dense_ms_p50": 1.2227,
+    "dense_ms_p95": 2.8723,
+    "sparse_ms_p50": 0.5157,
+    "sparse_ms_p95": 0.733,
+    "embed_ms_per_query": 0.0522
+   },
+   "n_cases": 21,
+   "no_answer": {
+    "curve": [
+     {
+      "f1": 0.8947,
+      "recall": 1.0,
+      "precision": 0.8095,
+      "threshold": 0.0
+     },
+     {
+      "f1": 0.8649,
+      "recall": 0.9412,
+      "precision": 0.8,
+      "threshold": 0.02
+     },
+     {
+      "f1": 0.8649,
+      "recall": 0.9412,
+      "precision": 0.8,
+      "threshold": 0.04
+     },
+     {
+      "f1": 0.8649,
+      "recall": 0.9412,
+      "precision": 0.8,
+      "threshold": 0.06
+     },
+     {
+      "f1": 0.8649,
+      "recall": 0.9412,
+      "precision": 0.8,
+      "threshold": 0.08
+     },
+     {
+      "f1": 0.8649,
+      "recall": 0.9412,
+      "precision": 0.8,
+      "threshold": 0.1
+     },
+     {
+      "f1": 0.8649,
+      "recall": 0.9412,
+      "precision": 0.8,
+      "threshold": 0.12
+     },
+     {
+      "f1": 0.8649,
+      "recall": 0.9412,
+      "precision": 0.8,
+      "threshold": 0.14
+     },
+     {
+      "f1": 0.8649,
+      "recall": 0.9412,
+      "precision": 0.8,
+      "threshold": 0.16
+     },
+     {
+      "f1": 0.8333,
+      "recall": 0.8824,
+      "precision": 0.7895,
+      "threshold": 0.18
+     },
+     {
+      "f1": 0.8333,
+      "recall": 0.8824,
+      "precision": 0.7895,
+      "threshold": 0.2
+     },
+     {
+      "f1": 0.8,
+      "recall": 0.8235,
+      "precision": 0.7778,
+      "threshold": 0.22
+     },
+     {
+      "f1": 0.7647,
+      "recall": 0.7647,
+      "precision": 0.7647,
+      "threshold": 0.24
+     },
+     {
+      "f1": 0.7097,
+      "recall": 0.6471,
+      "precision": 0.7857,
+      "threshold": 0.26
+     },
+     {
+      "f1": 0.6667,
+      "recall": 0.5882,
+      "precision": 0.7692,
+      "threshold": 0.28
+     },
+     {
+      "f1": 0.6429,
+      "recall": 0.5294,
+      "precision": 0.8182,
+      "threshold": 0.3
+     },
+     {
+      "f1": 0.6429,
+      "recall": 0.5294,
+      "precision": 0.8182,
+      "threshold": 0.32
+     },
+     {
+      "f1": 0.6429,
+      "recall": 0.5294,
+      "precision": 0.8182,
+      "threshold": 0.34
+     },
+     {
+      "f1": 0.6667,
+      "recall": 0.5294,
+      "precision": 0.9,
+      "threshold": 0.36
+     },
+     {
+      "f1": 0.64,
+      "recall": 0.4706,
+      "precision": 1.0,
+      "threshold": 0.38
+     },
+     {
+      "f1": 0.5833,
+      "recall": 0.4118,
+      "precision": 1.0,
+      "threshold": 0.4
+     },
+     {
+      "f1": 0.4545,
+      "recall": 0.2941,
+      "precision": 1.0,
+      "threshold": 0.42
+     },
+     {
+      "f1": 0.381,
+      "recall": 0.2353,
+      "precision": 1.0,
+      "threshold": 0.44
+     },
+     {
+      "f1": 0.381,
+      "recall": 0.2353,
+      "precision": 1.0,
+      "threshold": 0.46
+     },
+     {
+      "f1": 0.381,
+      "recall": 0.2353,
+      "precision": 1.0,
+      "threshold": 0.48
+     },
+     {
+      "f1": 0.381,
+      "recall": 0.2353,
+      "precision": 1.0,
+      "threshold": 0.5
+     },
+     {
+      "f1": 0.3,
+      "recall": 0.1765,
+      "precision": 1.0,
+      "threshold": 0.52
+     },
+     {
+      "f1": 0.3,
+      "recall": 0.1765,
+      "precision": 1.0,
+      "threshold": 0.54
+     },
+     {
+      "f1": 0.3,
+      "recall": 0.1765,
+      "precision": 1.0,
+      "threshold": 0.56
+     },
+     {
+      "f1": 0.3,
+      "recall": 0.1765,
+      "precision": 1.0,
+      "threshold": 0.58
+     },
+     {
+      "f1": 0.2105,
+      "recall": 0.1176,
+      "precision": 1.0,
+      "threshold": 0.6
+     },
+     {
+      "f1": 0.1111,
+      "recall": 0.0588,
+      "precision": 1.0,
+      "threshold": 0.62
+     },
+     {
+      "f1": 0.0,
+      "recall": 0.0,
+      "precision": 0.0,
+      "threshold": 0.64
+     },
+     {
+      "f1": 0.0,
+      "recall": 0.0,
+      "precision": 0.0,
+      "threshold": 0.66
+     },
+     {
+      "f1": 0.0,
+      "recall": 0.0,
+      "precision": 0.0,
+      "threshold": 0.68
+     },
+     {
+      "f1": 0.0,
+      "recall": 0.0,
+      "precision": 0.0,
+      "threshold": 0.7
+     },
+     {
+      "f1": 0.0,
+      "recall": 0.0,
+      "precision": 0.0,
+      "threshold": 0.72
+     },
+     {
+      "f1": 0.0,
+      "recall": 0.0,
+      "precision": 0.0,
+      "threshold": 0.74
+     },
+     {
+      "f1": 0.0,
+      "recall": 0.0,
+      "precision": 0.0,
+      "threshold": 0.76
+     },
+     {
+      "f1": 0.0,
+      "recall": 0.0,
+      "precision": 0.0,
+      "threshold": 0.78
+     },
+     {
+      "f1": 0.0,
+      "recall": 0.0,
+      "precision": 0.0,
+      "threshold": 0.8
+     },
+     {
+      "f1": 0.0,
+      "recall": 0.0,
+      "precision": 0.0,
+      "threshold": 0.82
+     },
+     {
+      "f1": 0.0,
+      "recall": 0.0,
+      "precision": 0.0,
+      "threshold": 0.84
+     },
+     {
+      "f1": 0.0,
+      "recall": 0.0,
+      "precision": 0.0,
+      "threshold": 0.86
+     },
+     {
+      "f1": 0.0,
+      "recall": 0.0,
+      "precision": 0.0,
+      "threshold": 0.88
+     },
+     {
+      "f1": 0.0,
+      "recall": 0.0,
+      "precision": 0.0,
+      "threshold": 0.9
+     },
+     {
+      "f1": 0.0,
+      "recall": 0.0,
+      "precision": 0.0,
+      "threshold": 0.92
+     },
+     {
+      "f1": 0.0,
+      "recall": 0.0,
+      "precision": 0.0,
+      "threshold": 0.94
+     },
+     {
+      "f1": 0.0,
+      "recall": 0.0,
+      "precision": 0.0,
+      "threshold": 0.96
+     },
+     {
+      "f1": 0.0,
+      "recall": 0.0,
+      "precision": 0.0,
+      "threshold": 0.98
+     },
+     {
+      "f1": 0.0,
+      "recall": 0.0,
+      "precision": 0.0,
+      "threshold": 1.0
+     }
+    ],
+    "current": {
+     "f1": 0.7647,
+     "fn": 4,
+     "fp": 4,
+     "tn": 0,
+     "tp": 13,
+     "recall": 0.7647,
+     "accuracy": 0.619,
+     "precision": 0.7647
+    },
+    "available": true,
+    "at_suggested": {
+     "f1": 0.8947,
+     "fn": 0,
+     "fp": 4,
+     "tn": 0,
+     "tp": 17,
+     "recall": 1.0,
+     "accuracy": 0.8095,
+     "precision": 0.8095
+    },
+    "current_min_score": 0.25,
+    "suggested_min_score": 0.0,
+    "mean_score_answerable": 0.3536,
+    "mean_score_unanswerable": 0.3199
+   },
+   "n_evaluated": 17,
+   "n_answerable": 17,
+   "chunking_stats": {
+    "chunks": 16,
+    "parents": 6,
+    "avg_chars": 147.0625,
+    "p95_chars": 192,
+    "median_chars": 162
+   },
+   "context_recall": {
+    "child_only": 0.7059,
+    "with_parent": 0.7059
+   },
+   "n_unanswerable": 4,
+   "by_language_pair": {
+    "en->en": {
+     "n": 9,
+     "dense": {
+      "mrr": 0.9048,
+      "hit@1": 0.8889,
+      "hit@5": 0.8889
+     },
+     "hybrid": {
+      "mrr": 1.0,
+      "hit@1": 1.0,
+      "hit@5": 1.0
+     }
+    },
+    "en->rw": {
+     "n": 3,
+     "dense": {
+      "mrr": 0.0704,
+      "hit@1": 0.0,
+      "hit@5": 0.0
+     },
+     "hybrid": {
+      "mrr": 0.0704,
+      "hit@1": 0.0,
+      "hit@5": 0.0
+     }
+    },
+    "rw->en": {
+     "n": 2,
+     "dense": {
+      "mrr": 0.05,
+      "hit@1": 0.0,
+      "hit@5": 0.0
+     },
+     "hybrid": {
+      "mrr": 0.05,
+      "hit@1": 0.0,
+      "hit@5": 0.0
+     }
+    },
+    "rw->rw": {
+     "n": 3,
+     "dense": {
+      "mrr": 1.0,
+      "hit@1": 1.0,
+      "hit@5": 1.0
+     },
+     "hybrid": {
+      "mrr": 1.0,
+      "hit@1": 1.0,
+      "hit@5": 1.0
+     }
+    }
+   },
+   "cross_language_gap": {
+    "gap": 0.9167,
+    "mode": "dense",
+    "same_language_hit@5": 0.9167,
+    "cross_language_hit@5": 0.0
+   },
+   "evidence_integrity": {
+    "ci95": [
+     0.8157,
+     1.0
+    ],
+    "note": "Share of answerable questions whose evidence text survives intact inside at least one chunk (measures cleaning + chunking).",
+    "value": 1.0,
+    "missing": []
+   }
+  },
+  "error": null,
+  "created_by": "50d7927f-33c9-4908-bdc4-df97c5fa4115",
+  "created_at": "2026-11-06T10:11:34.701691+00:00",
+  "started_at": "2026-11-06T10:11:35.049651+00:00",
+  "finished_at": "2026-11-06T10:11:35.470038+00:00",
+  "dataset": "Starter benchmark: HR, IT security and office rules (EN + RW)"
+ },
+ "llm_oracle": {
+  "id": "e561535c-9cc3-483c-abc8-531054697189",
+  "dataset_id": "e97c0890-283e-4bd4-bb72-8ff6468c7bb7",
+  "kind": "llm",
+  "status": "completed",
+  "params": {
+   "mode": "oracle",
+   "use_judge": true,
+   "pause_seconds": 0
+  },
+  "config_snapshot": {
+   "llm": {
+    "model": "gemini-3.8-flash",
+    "provider": "fake",
+    "temperature": 0.2
+   },
+   "chunking": {
+    "overlap": 20,
+    "strategy": "parent_child",
+    "child_size": 200,
+    "chunk_size": 800,
+    "parent_size": 600,
+    "language_aware": true
+   },
+   "cleaning": {
+    "fix_hyphenation": true,
+    "merge_soft_wraps": true,
+    "normalize_unicode": true,
+    "collapse_whitespace": true,
+    "remove_headers_footers": true,
+    "drop_duplicate_paragraphs": false
+   },
+   "embedding": {
+    "model": "gemini-embedding-2",
+    "provider": "fake",
+    "dimensions": 768
+   },
+   "retrieval": {
+    "dense": {
+     "top_k": 20,
+     "enabled": true
+    },
+    "rrf_k": 60,
+    "fusion": "rrf",
+    "sparse": {
+     "top_k": 20,
+     "enabled": true
+    },
+    "final_k": 4,
+    "reranker": null,
+    "min_score": 0.25,
+    "query_transform": "followup_concat"
+   },
+   "config_version": 5
+  },
+  "progress_pct": 100,
+  "message": "Completed",
+  "summary": {
+   "kind": "llm",
+   "mode": "oracle",
+   "judge": true,
+   "tokens": {
+    "prompt": 210,
+    "completion": 210
+   },
+   "latency": {
+    "p50_ms": 0.0123,
+    "p95_ms": 0.017,
+    "mean_ms": 0.0112
+   },
+   "n_cases": 21,
+   "n_errors": 0,
+   "n_scored": 21,
+   "token_f1": 0.1742,
+   "relevance": 0.8,
+   "by_language": {
+    "en": {
+     "n": 15,
+     "token_f1": 0.1779,
+     "faithfulness": 1.0,
+     "language_match": 0.8,
+     "key_fact_recall": 1.0
+    },
+    "rw": {
+     "n": 6,
+     "token_f1": 0.1653,
+     "faithfulness": 1.0,
+     "language_match": 0.6667,
+     "key_fact_recall": 1.0
+    }
+   },
+   "faithfulness": 1.0,
+   "n_answerable": 17,
+   "language_match": {
+    "n": 21,
+    "ci95": [
+     0.5491,
+     0.8937
+    ],
+    "value": 0.7619
+   },
+   "n_unanswerable": 4,
+   "key_fact_recall": 1.0,
+   "fully_correct_rate": 1.0,
+   "abstention_accuracy": {
+    "n": 4,
+    "ci95": [
+     0.5101,
+     1.0
+    ],
+    "value": 1.0
+   },
+   "false_abstention_rate": {
+    "n": 17,
+    "value": 0.0
+   }
+  },
+  "error": null,
+  "created_by": "50d7927f-33c9-4908-bdc4-df97c5fa4115",
+  "created_at": "2026-11-06T10:11:35.717232+00:00",
+  "started_at": "2026-11-06T10:11:37.484210+00:00",
+  "finished_at": "2026-11-06T10:11:37.553747+00:00",
+  "dataset": "Starter benchmark: HR, IT security and office rules (EN + RW)"
+ },
+ "llm_pipeline": {
+  "id": "69e9def7-08f4-4289-992d-0a1c5a478bca",
+  "dataset_id": "e97c0890-283e-4bd4-bb72-8ff6468c7bb7",
+  "kind": "llm",
+  "status": "completed",
+  "params": {
+   "mode": "pipeline",
+   "use_judge": true,
+   "pause_seconds": 0
+  },
+  "config_snapshot": {
+   "llm": {
+    "model": "gemini-3.8-flash",
+    "provider": "fake",
+    "temperature": 0.2
+   },
+   "chunking": {
+    "overlap": 20,
+    "strategy": "parent_child",
+    "child_size": 200,
+    "chunk_size": 800,
+    "parent_size": 600,
+    "language_aware": true
+   },
+   "cleaning": {
+    "fix_hyphenation": true,
+    "merge_soft_wraps": true,
+    "normalize_unicode": true,
+    "collapse_whitespace": true,
+    "remove_headers_footers": true,
+    "drop_duplicate_paragraphs": false
+   },
+   "embedding": {
+    "model": "gemini-embedding-2",
+    "provider": "fake",
+    "dimensions": 768
+   },
+   "retrieval": {
+    "dense": {
+     "top_k": 20,
+     "enabled": true
+    },
+    "rrf_k": 60,
+    "fusion": "rrf",
+    "sparse": {
+     "top_k": 20,
+     "enabled": true
+    },
+    "final_k": 4,
+    "reranker": null,
+    "min_score": 0.25,
+    "query_transform": "followup_concat"
+   },
+   "config_version": 5
+  },
+  "progress_pct": 100,
+  "message": "Completed",
+  "summary": {
+   "kind": "llm",
+   "mode": "pipeline",
+   "judge": true,
+   "tokens": {
+    "prompt": 210,
+    "completion": 210
+   },
+   "latency": {
+    "p50_ms": 0.0136,
+    "p95_ms": 0.0194,
+    "mean_ms": 0.0125
+   },
+   "n_cases": 21,
+   "n_errors": 0,
+   "n_scored": 21,
+   "token_f1": 0.1576,
+   "relevance": 0.8,
+   "by_language": {
+    "en": {
+     "n": 15,
+     "token_f1": 0.1547,
+     "faithfulness": 1.0,
+     "language_match": 1.0,
+     "key_fact_recall": 0.6667
+    },
+    "rw": {
+     "n": 6,
+     "token_f1": 0.1644,
+     "faithfulness": 1.0,
+     "language_match": 1.0,
+     "key_fact_recall": 0.6
+    }
+   },
+   "faithfulness": 1.0,
+   "n_answerable": 17,
+   "language_match": {
+    "n": 21,
+    "ci95": [
+     0.8454,
+     1.0
+    ],
+    "value": 1.0
+   },
+   "n_unanswerable": 4,
+   "key_fact_recall": 0.6471,
+   "fully_correct_rate": 0.6471,
+   "abstention_accuracy": {
+    "n": 4,
+    "ci95": [
+     0.0,
+     0.4899
+    ],
+    "value": 0.0
+   },
+   "false_abstention_rate": {
+    "n": 17,
+    "value": 0.2353
+   }
+  },
+  "error": null,
+  "created_by": "50d7927f-33c9-4908-bdc4-df97c5fa4115",
+  "created_at": "2026-11-06T10:11:37.740915+00:00",
+  "started_at": "2026-11-06T10:11:39.561742+00:00",
+  "finished_at": "2026-11-06T10:11:39.666889+00:00",
+  "dataset": "Starter benchmark: HR, IT security and office rules (EN + RW)"
+ },
+ "llm_closed_book": {
+  "id": "59a40ec1-0e45-4b6e-abf9-7f25ef6a6707",
+  "dataset_id": "e97c0890-283e-4bd4-bb72-8ff6468c7bb7",
+  "kind": "llm",
+  "status": "completed",
+  "params": {
+   "mode": "closed_book",
+   "use_judge": false,
+   "pause_seconds": 0
+  },
+  "config_snapshot": {
+   "llm": {
+    "model": "gemini-3.8-flash",
+    "provider": "fake",
+    "temperature": 0.2
+   },
+   "chunking": {
+    "overlap": 20,
+    "strategy": "parent_child",
+    "child_size": 200,
+    "chunk_size": 800,
+    "parent_size": 600,
+    "language_aware": true
+   },
+   "cleaning": {
+    "fix_hyphenation": true,
+    "merge_soft_wraps": true,
+    "normalize_unicode": true,
+    "collapse_whitespace": true,
+    "remove_headers_footers": true,
+    "drop_duplicate_paragraphs": false
+   },
+   "embedding": {
+    "model": "gemini-embedding-2",
+    "provider": "fake",
+    "dimensions": 768
+   },
+   "retrieval": {
+    "dense": {
+     "top_k": 20,
+     "enabled": true
+    },
+    "rrf_k": 60,
+    "fusion": "rrf",
+    "sparse": {
+     "top_k": 20,
+     "enabled": true
+    },
+    "final_k": 4,
+    "reranker": null,
+    "min_score": 0.25,
+    "query_transform": "followup_concat"
+   },
+   "config_version": 5
+  },
+  "progress_pct": 100,
+  "message": "Completed",
+  "summary": {
+   "kind": "llm",
+   "mode": "closed_book",
+   "judge": false,
+   "tokens": {
+    "prompt": 210,
+    "completion": 210
+   },
+   "latency": {
+    "p50_ms": 0.0082,
+    "p95_ms": 0.0098,
+    "mean_ms": 0.0069
+   },
+   "n_cases": 21,
+   "n_errors": 0,
+   "n_scored": 21,
+   "token_f1": 0.073,
+   "relevance": null,
+   "by_language": {
+    "en": {
+     "n": 15,
+     "token_f1": 0.1035,
+     "faithfulness": null,
+     "language_match": 1.0,
+     "key_fact_recall": 0.0
+    },
+    "rw": {
+     "n": 6,
+     "token_f1": 0.0,
+     "faithfulness": null,
+     "language_match": 1.0,
+     "key_fact_recall": 0.0
+    }
+   },
+   "faithfulness": null,
+   "n_answerable": 17,
+   "language_match": {
+    "n": 21,
+    "ci95": [
+     0.8454,
+     1.0
+    ],
+    "value": 1.0
+   },
+   "n_unanswerable": 4,
+   "key_fact_recall": 0.0,
+   "fully_correct_rate": 0.0,
+   "abstention_accuracy": {
+    "n": 4,
+    "ci95": [
+     0.0,
+     0.4899
+    ],
+    "value": 0.0
+   },
+   "false_abstention_rate": {
+    "n": 17,
+    "value": 0.0
+   }
+  },
+  "error": null,
+  "created_by": "50d7927f-33c9-4908-bdc4-df97c5fa4115",
+  "created_at": "2026-11-06T10:11:39.758342+00:00",
+  "started_at": "2026-11-06T10:11:41.675632+00:00",
+  "finished_at": "2026-11-06T10:11:41.716517+00:00",
+  "dataset": "Starter benchmark: HR, IT security and office rules (EN + RW)"
+ }
+}

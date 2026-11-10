@@ -1,0 +1,52 @@
+
+[01] SuperAdmin signs in and activates the (test) AI configuration
+  PUT /superadmin/rag-config -> HTTP 200; activated=True; live validation=True
+  DB rag_config_versions: [(2, 'active'), (1, 'archived')]
+
+[02] SuperAdmin registers a company (company + admin created in one transaction)
+  POST /superadmin/companies -> HTTP 201; company_id=ea213f85-9e33-41ac-8de6-bba45777d995
+  DB companies: [('Trace Co b98bc0', 'active', 'not_started', 'empty')]
+  DB users (password stored as Argon2 hash): [('trace-b98bc0@x.com', 'company_admin', '$argon2id$v=19$m=65536...')]
+
+[03] Company admin signs in, adds an employee and uploads a document
+  POST /company/documents -> HTTP 202; result=queued
+  worker progress: stage=upload   status=uploaded   progress=0%
+  worker progress: stage=done     status=ready      progress=100%
+  DB documents: [('handbook.md', 'ready', 'gemini-embedding-2', 211)]
+  DB processing_jobs: [('done', 'succeeded', 100)]
+  DB parent_chunks / chunks: [(2, 2)]
+  DB embedding dimension of stored vectors: [(768,)]
+  DB chunk languages (metadata): [('en', 1), ('rw', 1)]
+  DB sample chunk: '# Leave policy\nEmployees are entitled to twenty-five days of paid annual leave per year.\n\n'
+  EDA statistics: {'pages': 1, 'words': 34, 'chunks': 2, 'parent_chunks': 2, 'paragraphs_by_language': {'en': 1, 'rw': 2, 'unknown': 3}}
+
+[04] Company admin starts the service; employee asks questions
+  POST /company/service/start -> {'chatbot_state': 'started'}
+  Q: How many days of annual leave do employees get?
+     lang=en has_evidence=True sources=['handbook.md', 'handbook.md'] remaining=8
+     A: Based on the company documents: # Leave policy
+Employees are entitled to twenty-five days of paid annual leave
+  Q: Igihe cy'igeragezwa kimara igihe kingana iki?
+     lang=rw has_evidence=True sources=['handbook.md', 'handbook.md'] remaining=7
+     A: Ukurikije dosiye z'ikigo: # Igihe cy'igeragezwa
+Igihe cy'igeragezwa ni amezi atatu.
+  Q: Who won the football match yesterday?
+     lang=en has_evidence=True sources=['handbook.md', 'handbook.md'] remaining=6
+     A: Based on the company documents: # Igihe cy'igeragezwa
+Igihe cy'igeragezwa ni amezi atatu.
+  DB messages stored: [(1, 'assistant', 'Based on the company documents: # Leav', True, None), (1, 'user', 'How many days of annual leave do emplo', None, 'en'), (2, 'assistant', "Ukurikije dosiye z'ikigo: # Igihe cy'i", True, None), (2, 'user', "Igihe cy'igeragezwa kimara igihe kinga", None, 'rw'), (3, 'assistant', 'Based on the company documents: # Igih', True, None), (3, 'user', 'Who won the football match yesterday?', None, 'en')]
+  DB retrieval_logs for the last answer (evidence trail): [(1, Decimal('0.533'), Decimal('0.800'), Decimal('0.0328'), True), (2, Decimal('0.090'), None, Decimal('0.0161'), True)]
+  DB conversation counter: [(3,)]
+
+[05] Employee rates the answer and reports an issue; admin sees both in analytics
+  DB feedback rows: [(5, None), (None, True)]
+  DB reports: [('recommendation', 'open')]
+  GET /company/analytics/overview -> questions=3 no_evidence=0 avg_rating=5.0 conversations=1
+  GET /company/analytics/questions -> [('Who won the football match yes', 1, True), ("Igihe cy'igeragezwa kimara igi", 1, True), ('How many days of annual leave ', 1, True)]
+
+[06] Admin ends the service: tracked deletion; nothing is left behind
+  deletion job: completed {'logs': 'done', 'files': 'done', 'vectors': 'done', 'database': 'done', 'anonymize': 'done', 'temp_files': 'done'}
+  DB rows left for the company (documents, chunks, conversations, messages, employees): [(0, 0, 0, 0, 0)]
+  DB anonymised_feedback keeps only: [('report', None, None, None, 'recommendation'), ('rating', 'Did the answer fully address your question?', None, True, None), ('rating', 'How helpful was this answer?', 5, None, None)]
+
+TRACE COMPLETE

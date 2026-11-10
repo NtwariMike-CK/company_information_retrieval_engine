@@ -1,0 +1,6 @@
+q_id,answer,expected_source,generation_s,lang,retrieval_s,source_ok,sources,status,total_s,wall_s
+Q1,"According to the EAUR Social and Welfare Policy, the **Director Human resource and administration** is responsible for the communication and dissemination of an employee social event (such as a wedding, a newborn in the staff family, or a death occurrence of an employee or their direct relative), as well as media and news releases if applicable [1]. 
+
+However, this authority may be delegated for certain cases or reasons with prior permission from the DVCAF, campus director, or Vice Chancellor [1].",EAUR SOCIAL AND WELFARE POLICY,5.883,EN,1.855,False,EAUR SOCIAL AND WELFARE POLICY.docx; EAUR-EMMA meeting minutes.docx,Answered,7.738,7.77
+Q2,"According to the EAUR Social and Welfare Policy, EAUR provides **200,000** in financial support for a staff member who has lost a dependent [1].",EAUR SOCIAL AND WELFARE POLICY,4.603,EN,1.073,False,EAUR SOCIAL AND WELFARE POLICY.docx; EAUR-EMMA meeting minutes.docx,Answered,5.677,5.71
+Q3,"According to the EAUR Social and Welfare Policy, the amount provided for staff funeral expenses, including flowers, is 300,000 [1].",EAUR SOCIAL AND WELFARE POLICY,4.76,EN,1.162,False,EAUR SOCIAL AND WELFARE POLICY.docx,Answered,5.922,5.95

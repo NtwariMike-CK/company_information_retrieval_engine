@@ -1,0 +1,244 @@
+{
+ "checks": [
+  {
+   "name": "seed: demo documents (PDF, DOCX, Kinyarwanda MD) processed to ready",
+   "pass": true,
+   "detail": "[('Acme_HR_Policy_EN.pdf', 'ready'), ('Amategeko_y_akazi_RW.md', 'ready'), ('Remote_Work_and_IT_Guide_EN.docx', 'ready')]"
+  },
+  {
+   "name": "seed: service started",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "landing page renders hero from the database",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "wrong password shows a safe error message, stays on /login",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "protected page without a session redirects to /login",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "favicon asset /icon.svg is served",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "favicon asset /favicon.ico is served",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "favicon asset /apple-icon.png is served",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "employee lands on the chat page",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "English question answered through the UI",
+   "pass": true,
+   "detail": "HTTP 200"
+  },
+  {
+   "name": "Kinyarwanda question answered through the UI",
+   "pass": true,
+   "detail": "HTTP 200"
+  },
+  {
+   "name": "employee is kept out of the admin area",
+   "pass": true,
+   "detail": "http://localhost:3000/chat"
+  },
+  {
+   "name": "company admin lands in the admin area",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "admin page /admin/documents renders",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "admin page /admin/employees renders",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "admin page /admin/analytics renders",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "company admin cannot open the SuperAdmin area",
+   "pass": true,
+   "detail": "http://localhost:3000/admin"
+  },
+  {
+   "name": "superadmin lands in the SuperAdmin area",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "superadmin page /superadmin renders without error",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "superadmin page /superadmin/applications renders without error",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "superadmin page /superadmin/rag renders without error",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "superadmin page /superadmin/model-eval renders without error",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "superadmin page /superadmin/content renders without error",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "superadmin page /superadmin/analytics renders without error",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "superadmin page /superadmin/evaluation renders without error",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "iPhone 13 (emulated): chat page has no horizontal scroll",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "Pixel 7 (emulated): chat page has no horizontal scroll",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "iPad (gen 7) (emulated): chat page has no horizontal scroll",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "no uncaught JavaScript errors during the whole run",
+   "pass": true,
+   "detail": "['Failed to load resource: the server responded with a status of 401 (Unauthorized)']"
+  }
+ ],
+ "shots": [
+  "01_landing_desktop",
+  "02_login",
+  "03_login_error",
+  "04_employee_chat_empty",
+  "05_employee_chat_answer_en",
+  "06_employee_chat_answer_rw",
+  "07_employee_report_form",
+  "08_admin_dashboard",
+  "09_admin_documents",
+  "10_admin_employees",
+  "11_admin_analytics",
+  "12_superadmin_companies",
+  "13_superadmin_applications",
+  "14_superadmin_rag_settings",
+  "15_superadmin_model_evaluation",
+  "16_superadmin_content",
+  "17_superadmin_analytics",
+  "18_superadmin_feedback_settings",
+  "19_model_evaluation_run_detail",
+  "20_chat_iphone13_emulated",
+  "21_chat_pixel7_emulated",
+  "22_chat_ipad_emulated",
+  "23_landing_iphone13_emulated"
+ ],
+ "perf": {
+  "chat_answer_ui_ms_en": 79,
+  "Desktop, no throttling": {
+   "Landing page": {
+    "load_ms_median": 94,
+    "lcp_ms_median": 180
+   },
+   "Login page": {
+    "load_ms_median": 88,
+    "lcp_ms_median": 84
+   },
+   "Chat (signed in)": {
+    "load_ms_median": 85,
+    "lcp_ms_median": 128
+   },
+   "Model evaluation (SuperAdmin)": {
+    "load_ms_median": 86,
+    "lcp_ms_median": 168
+   }
+  },
+  "Mid-range phone (4x CPU slowdown, 4G 9 Mbps / 170 ms)": {
+   "Landing page": {
+    "load_ms_median": 839,
+    "lcp_ms_median": 1228
+   },
+   "Login page": {
+    "load_ms_median": 820,
+    "lcp_ms_median": 612
+   },
+   "Chat (signed in)": {
+    "load_ms_median": 811,
+    "lcp_ms_median": 1092
+   },
+   "Model evaluation (SuperAdmin)": {
+    "load_ms_median": 788,
+    "lcp_ms_median": 1116
+   }
+  },
+  "Low-end phone (6x CPU slowdown, slow 3G 400 kbps / 400 ms)": {
+   "Landing page": {
+    "load_ms_median": 7011,
+    "lcp_ms_median": 7372
+   },
+   "Login page": {
+    "load_ms_median": 6179,
+    "lcp_ms_median": 1708
+   },
+   "Chat (signed in)": {
+    "load_ms_median": 6982,
+    "lcp_ms_median": 7000
+   },
+   "Model evaluation (SuperAdmin)": {
+    "load_ms_median": 6635,
+    "lcp_ms_median": 6648
+   }
+  }
+ },
+ "errors": [],
+ "browser": {
+  "engine": "Chromium",
+  "version": "153.0.8010.12"
+ },
+ "console_errors": [
+  "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+ ],
+ "summary": {
+  "passed": 29,
+  "total": 29,
+  "screenshots": 23
+ }
+}

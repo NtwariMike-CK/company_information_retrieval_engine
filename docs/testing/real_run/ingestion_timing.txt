@@ -1,0 +1,3 @@
+Document | Type | Size (MB) | Chunks created | Processing time (s) | Result
+Remote_Work_and_IT_Guide_EN.docx | docx | 0.04 | 1 | 4.1 | ready
+Acme_HR_Policy_EN.pdf | pdf | 0.00 | 2 | 3.1 | ready

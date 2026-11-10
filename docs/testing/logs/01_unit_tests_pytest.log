@@ -1,0 +1,48 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.18, pytest-9.2.0, pluggy-1.6.0 -- /usr/local/bin/python3
+cachedir: .pytest_cache
+rootdir: /mnt/attach/outputs/company-rag/backend
+plugins: platformdirs-4.13.5, anyio-4.15.1
+collecting ... collected 39 items
+
+tests/test_language.py::test_detects_english_and_kinyarwanda PASSED      [  2%]
+tests/test_language.py::test_unsure_returns_none PASSED                  [  5%]
+tests/test_language.py::test_stopword_sets_do_not_overlap PASSED         [  7%]
+tests/test_language.py::test_chunks_never_mix_languages PASSED           [ 10%]
+tests/test_language.py::test_parent_child_keeps_language_and_page PASSED [ 12%]
+tests/test_language.py::test_abbreviations_decimals_and_lists_are_not_split PASSED [ 15%]
+tests/test_language.py::test_heading_stays_with_its_text PASSED          [ 17%]
+tests/test_language.py::test_apostrophes_are_normalised_for_kinyarwanda PASSED [ 20%]
+tests/test_language.py::test_query_tokens_are_unicode_safe_and_drop_stopwords PASSED [ 23%]
+tests/test_eval_metrics.py::test_ranking_metrics_hand_computed PASSED    [ 25%]
+tests/test_eval_metrics.py::test_perfect_and_empty_rankings PASSED       [ 28%]
+tests/test_eval_metrics.py::test_token_f1 PASSED                         [ 30%]
+tests/test_eval_metrics.py::test_key_fact_recall_with_alternatives PASSED [ 33%]
+tests/test_eval_metrics.py::test_evidence_matching_is_tolerant_but_not_loose PASSED [ 35%]
+tests/test_eval_metrics.py::test_abstention_detection_both_languages PASSED [ 38%]
+tests/test_eval_metrics.py::test_wilson_interval_properties PASSED       [ 41%]
+tests/test_eval_metrics.py::test_threshold_sweep_and_best_threshold PASSED [ 43%]
+tests/test_eval_metrics.py::test_percentile_and_mean PASSED              [ 46%]
+tests/test_security_and_pipeline.py::test_password_hash_is_salted_and_verifies PASSED [ 48%]
+tests/test_security_and_pipeline.py::test_jwt_round_trip_and_claims PASSED [ 51%]
+tests/test_security_and_pipeline.py::test_jwt_tampered_and_expired_are_rejected PASSED [ 53%]
+tests/test_security_and_pipeline.py::test_api_keys_encrypted_at_rest_round_trip PASSED [ 56%]
+tests/test_security_and_pipeline.py::test_production_refuses_weak_secrets PASSED [ 58%]
+tests/test_security_and_pipeline.py::test_cleaning_removes_repeated_headers_and_page_numbers PASSED [ 61%]
+tests/test_security_and_pipeline.py::test_cleaning_fixes_hyphenation_soft_wraps_and_whitespace PASSED [ 64%]
+tests/test_security_and_pipeline.py::test_cleaning_normalises_curly_apostrophes_and_control_chars PASSED [ 66%]
+tests/test_security_and_pipeline.py::test_duplicate_paragraphs_measured_and_optionally_dropped PASSED [ 69%]
+tests/test_security_and_pipeline.py::test_extract_text_markdown_and_errors PASSED [ 71%]
+tests/test_security_and_pipeline.py::test_extract_docx_reads_paragraphs_and_tables PASSED [ 74%]
+tests/test_security_and_pipeline.py::test_corrupt_pdf_raises PASSED      [ 76%]
+tests/test_security_and_pipeline.py::test_split_text_respects_size_and_loses_no_words PASSED [ 79%]
+tests/test_security_and_pipeline.py::test_fixed_split_overlap PASSED     [ 82%]
+tests/test_security_and_pipeline.py::test_rrf_rewards_agreement_between_dense_and_sparse PASSED [ 84%]
+tests/test_security_and_pipeline.py::test_followup_concat_only_for_short_followups PASSED [ 87%]
+tests/test_security_and_pipeline.py::test_or_query_dedupes_and_caps_terms PASSED [ 89%]
+tests/test_security_and_pipeline.py::test_vector_literal_format PASSED   [ 92%]
+tests/test_security_and_pipeline.py::test_fake_embedder_is_deterministic_unit_length_and_lexical PASSED [ 94%]
+tests/test_security_and_pipeline.py::test_gemini_embedding_2_task_prefixes PASSED [ 97%]
+tests/test_security_and_pipeline.py::test_config_blocks_validate_ranges PASSED [100%]
+
+============================== 39 passed in 1.03s ==============================

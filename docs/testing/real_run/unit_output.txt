@@ -1,0 +1,74 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.13.9, pytest-9.2.0, pluggy-1.7.0 -- /Users/ntwarimikeck/Desktop/final capstone prototype/company-rag-test/backend/.venv/bin/python3.13
+cachedir: .pytest_cache
+rootdir: /Users/ntwarimikeck/Desktop/final capstone prototype/company-rag-test/backend
+plugins: cov-7.1.0, anyio-4.16.0
+collecting ... collected 16 items
+
+tests/test_workbook_unit.py::test_U1_parent_chunks_at_most_600 PASSED    [  6%]
+tests/test_workbook_unit.py::test_U2_child_chunks_at_most_200 PASSED     [ 12%]
+tests/test_workbook_unit.py::test_U3_consecutive_children_overlap_by_20 PASSED [ 18%]
+tests/test_workbook_unit.py::test_U4_every_child_points_to_its_parent PASSED [ 25%]
+tests/test_workbook_unit.py::test_U5_empty_or_very_short_document[] PASSED [ 31%]
+tests/test_workbook_unit.py::test_U5_empty_or_very_short_document[   ] PASSED [ 37%]
+tests/test_workbook_unit.py::test_U5_empty_or_very_short_document[Short.] PASSED [ 43%]
+tests/test_workbook_unit.py::test_U6_cleaning_matches_expected_sample PASSED [ 50%]
+tests/test_workbook_unit.py::test_U7_51_chunks_make_two_batches_50_and_1 PASSED [ 56%]
+tests/test_workbook_unit.py::test_U8_vectors_have_768_values PASSED      [ 62%]
+tests/test_workbook_unit.py::test_U9_rrf_matches_hand_calculation PASSED [ 68%]
+tests/test_workbook_unit.py::test_U10_chunk_in_both_lists_ranks_higher PASSED [ 75%]
+tests/test_workbook_unit.py::test_U11_threshold_025_024_no_data_026_passes PASSED [ 81%]
+tests/test_workbook_unit.py::test_U12_no_data_path_uses_no_context_prompt PASSED [ 87%]
+tests/test_workbook_unit.py::test_U13_eight_candidates_four_allowed PASSED [ 93%]
+tests/test_workbook_unit.py::test_U14_followup_is_completed_with_previous_question PASSED [100%]
+
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.13.9-final-0 _______________
+
+Name                                Stmts   Miss  Cover
+-------------------------------------------------------
+app/__init__.py                         0      0   100%
+app/db.py                              22     12    45%
+app/deps.py                            36     36     0%
+app/errors.py                           3      1    67%
+app/eval/__init__.py                    0      0   100%
+app/eval/judge.py                      22     22     0%
+app/eval/metrics.py                   105    105     0%
+app/eval/runner.py                    295    295     0%
+app/eval/starter.py                    23     23     0%
+app/main.py                            49     49     0%
+app/rag/__init__.py                     0      0   100%
+app/rag/ai.py                         103     61    41%
+app/rag/chunking.py                    88     24    73%
+app/rag/clean.py                       65      8    88%
+app/rag/extract.py                     27     23    15%
+app/rag/lang.py                        39     28    28%
+app/rag/retrieval.py                   67     39    42%
+app/routers/__init__.py                 0      0   100%
+app/routers/applications_admin.py      57     57     0%
+app/routers/apply.py                   94     94     0%
+app/routers/auth.py                    40     40     0%
+app/routers/chat.py                    63     63     0%
+app/routers/cms.py                    176    176     0%
+app/routers/company_admin.py          251    251     0%
+app/routers/model_eval.py             194    194     0%
+app/routers/public.py                  36     36     0%
+app/routers/superadmin.py             191    191     0%
+app/schemas.py                        264     17    94%
+app/security.py                        45     27    40%
+app/seed.py                            41     41     0%
+app/seed_content.py                     7      7     0%
+app/services/__init__.py                0      0   100%
+app/services/analytics.py              67     67     0%
+app/services/applications.py           55     55     0%
+app/services/chat.py                   86     71    17%
+app/services/common.py                 18     11    39%
+app/services/config_service.py         51     37    27%
+app/services/deletion.py               50     50     0%
+app/services/ingest.py                 70     52    26%
+app/services/mailer.py                 41     41     0%
+app/settings.py                        30      1    97%
+app/worker.py                          51     51     0%
+-------------------------------------------------------
+TOTAL                                2922   2356    19%
+============================== 16 passed in 2.04s ==============================

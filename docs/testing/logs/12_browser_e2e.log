@@ -1,0 +1,34 @@
+PASS seed: demo documents (PDF, DOCX, Kinyarwanda MD) processed to ready
+PASS seed: service started
+PASS landing page renders hero from the database
+PASS wrong password shows a safe error message, stays on /login
+PASS protected page without a session redirects to /login
+PASS favicon asset /icon.svg is served
+PASS favicon asset /favicon.ico is served
+PASS favicon asset /apple-icon.png is served
+PASS employee lands on the chat page
+PASS English question answered through the UI
+PASS Kinyarwanda question answered through the UI
+PASS employee is kept out of the admin area
+PASS company admin lands in the admin area
+PASS admin page /admin/documents renders
+PASS admin page /admin/employees renders
+PASS admin page /admin/analytics renders
+PASS company admin cannot open the SuperAdmin area
+PASS superadmin lands in the SuperAdmin area
+PASS superadmin page /superadmin renders without error
+PASS superadmin page /superadmin/applications renders without error
+PASS superadmin page /superadmin/rag renders without error
+PASS superadmin page /superadmin/model-eval renders without error
+PASS superadmin page /superadmin/content renders without error
+PASS superadmin page /superadmin/analytics renders without error
+PASS superadmin page /superadmin/evaluation renders without error
+PASS iPhone 13 (emulated): chat page has no horizontal scroll
+PASS Pixel 7 (emulated): chat page has no horizontal scroll
+PASS iPad (gen 7) (emulated): chat page has no horizontal scroll
+Desktop, no throttling {"Landing page": {"load_ms_median": 94, "lcp_ms_median": 180}, "Login page": {"load_ms_median": 88, "lcp_ms_median": 84}, "Chat (signed in)": {"load_ms_median": 85, "lcp_ms_median": 128}, "Model evaluation (SuperAdmin)": {"load_ms_median": 86, "lcp_ms_median": 168}}
+Mid-range phone (4x CPU slowdown, 4G 9 Mbps / 170 ms) {"Landing page": {"load_ms_median": 839, "lcp_ms_median": 1228}, "Login page": {"load_ms_median": 820, "lcp_ms_median": 612}, "Chat (signed in)": {"load_ms_median": 811, "lcp_ms_median": 1092}, "Model evaluation (SuperAdmin)": {"load_ms_median": 788, "lcp_ms_median": 1116}}
+Low-end phone (6x CPU slowdown, slow 3G 400 kbps / 400 ms) {"Landing page": {"load_ms_median": 7011, "lcp_ms_median": 7372}, "Login page": {"load_ms_median": 6179, "lcp_ms_median": 1708}, "Chat (signed in)": {"load_ms_median": 6982, "lcp_ms_median": 7000}, "Model evaluation (SuperAdmin)": {"load_ms_median": 6635, "lcp_ms_median": 6648}}
+PASS no uncaught JavaScript errors during the whole run
+
+29 of 29 browser checks passed; 23 screenshots; errors: []

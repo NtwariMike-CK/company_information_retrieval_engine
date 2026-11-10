@@ -1,0 +1,29 @@
+{
+  "_help": "Fill every value that still starts with '[' (shown in yellow in the PDFs), then run: python docs/report/build_report.py",
+  "title": "Company RAG Chatbot: a multi-tenant, bilingual retrieval-augmented assistant for company knowledge",
+  "author": "[YOUR FULL NAME]",
+  "student_id": "[STUDENT ID]",
+  "programme": "[PROGRAMME, UNIVERSITY]",
+  "supervisor": "[SUPERVISOR NAME]",
+  "date": "[MONTH YEAR]",
+  "links": {
+    "repository": "[GITHUB REPOSITORY URL]",
+    "video": "[WALKTHROUGH VIDEO URL]",
+    "report": "[TECHNICAL REPORT PDF URL]"
+  },
+  "deployment": {
+    "status": "Not implemented",
+    "evidence": "Hosting on Render/Vercel not done yet. Deployment guide prepared; production mode and managed-database compatibility verified locally (ENVIRONMENT=production, non-superuser owner, full test suites passed). Update after deploying."
+  },
+  "language_check": {
+    "summary": "[PASTE THE RESULT OF SuperAdmin > RAG Configuration > Languages > Run check: models used, match vs unrelated similarity for each direction, whether the LLM answered in Kinyarwanda]"
+  },
+  "browser_matrix": [
+    {"environment": "Google Chrome (latest) on macOS", "version": "[version]", "result": "[Pass/Fail]", "notes": "[what you tested: login, chat, upload, analytics]"},
+    {"environment": "Safari on macOS", "version": "[version]", "result": "[Pass/Fail]", "notes": "[notes]"},
+    {"environment": "Mozilla Firefox on macOS or Windows", "version": "[version]", "result": "[Pass/Fail]", "notes": "[notes]"},
+    {"environment": "Microsoft Edge on Windows", "version": "[version]", "result": "[Pass/Fail]", "notes": "[notes]"},
+    {"environment": "Mobile browser (phone, responsive layout)", "version": "[device + browser]", "result": "[Pass/Fail]", "notes": "[notes]"}
+  ],
+  "macbook_benchmark_file": "docs/benchmark_results_macbook.json"
+}

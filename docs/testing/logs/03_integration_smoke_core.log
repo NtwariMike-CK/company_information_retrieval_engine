@@ -1,0 +1,53 @@
+PASS superadmin login
+PASS wrong password rejected
+PASS config update + activation
+PASS invalid config rejected (child>=parent)
+PASS config with no API key fails validation and is NOT activated
+PASS previous config still active
+PASS credential created, key masked
+PASS credential list never returns key
+PASS duplicate admin email -> 409
+PASS company admins login
+PASS company admin cannot use superadmin API
+PASS employee created
+PASS upload: md queued, .exe rejected
+PASS duplicate upload detected
+PASS document processed -> ready with chunks
+PASS EDA stats stored
+PASS knowledge base ready (green)
+PASS chat blocked before Start
+PASS start
+PASS answer grounded with evidence + sources
+PASS evaluation requested (every answer)
+PASS feedback stored
+PASS wrong feedback type rejected
+PASS no-evidence question uses no-evidence path
+PASS 10th question blocked by backend (limit 9)
+PASS exchange_count capped at 9
+PASS report submitted
+PASS other company's employee cannot open conversation
+PASS company B admin cannot read A conversation
+PASS company B cannot retrieve company A's documents
+PASS employee cannot call admin API
+PASS questions report
+PASS questions CSV download
+PASS feedback list has question+answer
+PASS reports visible to admin
+PASS conversation detail has evidence + feedback
+PASS conversation export csv
+PASS superadmin platform analytics
+PASS superadmin reports per company
+PASS superadmin enters as admin
+PASS paused -> chat blocked, data kept
+PASS deactivated company cannot log in
+PASS END requires confirmation
+PASS end service accepted
+PASS deletion completed, all steps done
+PASS documents gone
+PASS conversations gone
+PASS employee accounts deleted (privacy)
+PASS company admin can still log in to re-upload
+PASS company reset to not_started/empty
+PASS other company's data untouched
+
+51 passed, 0 failed

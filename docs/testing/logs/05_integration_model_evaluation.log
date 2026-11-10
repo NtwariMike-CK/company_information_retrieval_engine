@@ -1,0 +1,42 @@
+PASS starter benchmark seeded (4 documents, 21 questions, 17 answerable)
+PASS hidden evaluation workspaces are not listed as companies
+PASS model-eval API is SuperAdmin-only
+PASS dataset created
+PASS run on an empty dataset refused
+PASS document added, .exe rejected
+PASS answerable question without evidence is rejected
+PASS question with ground truth added
+PASS bulk import
+PASS export is valid JSON with 3 questions
+PASS retrieval run on a tiny custom dataset completes
+PASS delete the temporary dataset
+PASS retrieval run accepted
+PASS a second run on the same dataset is refused while one is active
+PASS retrieval run completed
+PASS counts: 21 questions, 17 answerable, 4 unanswerable
+PASS three retrieval modes reported: dense (embedding), sparse (keyword), hybrid
+PASS every metric is a valid probability
+PASS metric relations hold (hit@1 <= hit@3 <= hit@5 <= hit@10, MRR >= hit@1)
+PASS keyword baseline finds same-language evidence (real, no AI model involved)
+PASS evidence integrity: chunking keeps the answer text intact
+PASS language pairs reported (en->en, rw->rw, en->rw, rw->en)
+PASS parent expansion never lowers context recall
+PASS no-answer analysis: curve + suggested threshold
+PASS latency and chunk statistics reported
+PASS run records the exact settings evaluated
+PASS per-question results with retrieved lists
+PASS CSV export
+PASS changing the chunking settings re-processes the benchmark (more, smaller chunks)
+PASS LLM run (gold context + judge) completed
+PASS key-fact recall high when the gold evidence is given
+PASS faithfulness and relevance reported (judge)
+PASS abstention accuracy on unanswerable questions = 100%
+PASS language, token-F1, latency and token usage reported
+PASS breakdown by language
+PASS baseline (LLM without the documents) scores lower than RAG
+PASS end-to-end pipeline mode completes without judge
+PASS per-question LLM results include answer, contexts and judge output
+PASS runs list shows headline numbers
+PASS finished runs can be deleted
+
+40 passed, 0 failed

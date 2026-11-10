@@ -1,0 +1,8 @@
+U15 | Pass | Employee calls an admin-only endpoint | HTTP 403
+U15 | Pass | Employee reads the admin document list | HTTP 403
+U15 | Pass | Company admin calls a SuperAdmin endpoint | HTTP 403
+U16 | Pass | Company B admin sees none of company A's documents | A has 2, B has 3, shared 0
+U16 | Pass | Company B admin tries to delete a document of company A | HTTP 404, document still present: True
+U17 | Pass | Same question asked three times | times_asked=3, last_asked=2026-11-06T14:54:05.006896+00:00
+
+6 of 6 checks passed

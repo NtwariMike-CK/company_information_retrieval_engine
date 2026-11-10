@@ -1,0 +1,78 @@
+PASS superadmin login
+PASS public landing sections come from the database
+PASS public terms: 3 steps, terms requires acceptance
+PASS public languages: English + Kinyarwanda
+PASS applicant registers
+PASS duplicate registration -> 409
+PASS weak password rejected
+PASS applicant cannot call admin / superadmin / chat APIs
+PASS applicant can log in (no company yet)
+PASS applicant cannot see other roles' content API
+PASS form fields come from the database
+PASS incomplete request rejected with field errors
+PASS invalid select value rejected
+PASS request submitted -> pending
+PASS only ONE open request at a time
+PASS onboarding locked until approved
+PASS emails queued for applicant and superadmin
+PASS superadmin sees the pending request
+PASS summary counts
+PASS review detail has applicant, answers and form definition
+PASS request-info needs a comment
+PASS request more information -> needs_info
+PASS applicant sees the reviewer's comment
+PASS applicant responds -> back to pending, answers updated
+PASS cannot respond when nothing was asked
+PASS reject needs a comment
+PASS reject with comment
+PASS after rejection the applicant can submit again
+PASS cannot approve an already rejected request
+PASS resubmission accepted -> pending
+PASS approval blocked when the company name already exists
+PASS approve -> approved (company not created yet)
+PASS company NOT created before terms are accepted
+PASS walkthrough: 3 pages from the database
+PASS cannot finish without accepting the terms
+PASS applicant still not an admin
+PASS accepting creates the company and makes the applicant its admin
+PASS same token now acts as company admin
+PASS applicant cannot onboard twice
+PASS admin can review their request and accepted terms (sidebar page)
+PASS superadmin sees the company
+PASS acceptance audit trail stored (version + time + ip)
+PASS manually created admins still have no request
+PASS current terms version has this run's acceptances recorded
+PASS editing terms publishes a NEW version
+PASS old version kept with its acceptances
+PASS accepting an outdated terms version is refused
+PASS new applicant sees the latest terms
+PASS ...and can onboard with them
+PASS landing content editable and served publicly
+PASS form field added in the database
+PASS new field appears in a fresh applicant's form
+PASS system field cannot be deleted
+PASS custom field can be deleted
+PASS a new language is just data (Swahili added)
+PASS English cannot be deleted
+PASS bilingual document processed
+PASS EDA reports both languages
+PASS embedding model recorded on the document
+PASS start
+PASS Kinyarwanda question: language detected, evidence found, answered in Kinyarwanda
+PASS English question finds the KINYARWANDA document (cross-language)
+PASS no-evidence answer comes back in Kinyarwanda
+PASS language self-check (embedding passes for English<->Kinyarwanda)
+PASS changing the embedding model re-queues existing documents
+PASS documents re-embedded with the new model
+PASS chat still works after the model switch
+PASS 12 simultaneous chat requests all succeed (no connection-pool starvation)
+PASS data export ZIP: documents + CSV files
+PASS end service accepted
+PASS deletion completed incl. anonymise step
+PASS anonymised records kept: scores + report category only
+PASS anonymised table has no company/user/text columns
+PASS report comment text was deleted with the company
+PASS admin account (ex-applicant) survives to re-onboard documents
+PASS employee account deleted
+
+76 passed, 0 failed

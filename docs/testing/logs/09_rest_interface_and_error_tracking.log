@@ -1,0 +1,53 @@
+REST INTERFACE TEST (expected vs actual status code, latency, response body excerpt)
+
+PASS | login (SuperAdmin)                             | POST   /auth/login                        | expected 200 got 200 |  128.5 ms | {"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1MGQ3OTI3Zi0zM2M5LTQ5MDgtYmRjNC1kZjk3YzVmYTQx...
+PASS | login with wrong password                      | POST   /auth/login                        | expected 401 got 401 |  113.4 ms | {"detail":{"code":"invalid_credentials","message":"Invalid email or password."}}
+PASS | login with malformed email (validation)        | POST   /auth/login                        | expected 422 got 422 |    2.3 ms | {"detail":[{"type":"value_error","loc":["body","email"],"msg":"value is not a valid email address: An email ad...
+PASS | protected route without a token                | GET    /superadmin/companies              | expected 401 got 401 |    1.5 ms | {"detail":{"code":"not_authenticated","message":"Authentication required."}}
+PASS | protected route with a forged token            | GET    /superadmin/companies              | expected 401 got 401 |    1.1 ms | {"detail":{"code":"invalid_token","message":"Invalid authentication token."}}
+PASS | brute-force guard: failed attempt 1 of 5       | POST   /auth/login                        | expected 401 got 401 |  119.6 ms | {"detail":{"code":"invalid_credentials","message":"Invalid email or password."}}
+PASS | brute-force guard: failed attempt 2 of 5       | POST   /auth/login                        | expected 401 got 401 |  125.8 ms | {"detail":{"code":"invalid_credentials","message":"Invalid email or password."}}
+PASS | brute-force guard: failed attempt 3 of 5       | POST   /auth/login                        | expected 401 got 401 |  126.9 ms | {"detail":{"code":"invalid_credentials","message":"Invalid email or password."}}
+PASS | brute-force guard: failed attempt 4 of 5       | POST   /auth/login                        | expected 401 got 401 |  108.6 ms | {"detail":{"code":"invalid_credentials","message":"Invalid email or password."}}
+PASS | brute-force guard: failed attempt 5 of 5       | POST   /auth/login                        | expected 401 got 401 |  128.5 ms | {"detail":{"code":"invalid_credentials","message":"Invalid email or password."}}
+PASS | brute-force guard: 6th attempt is blocked      | POST   /auth/login                        | expected 429 got 429 |    2.4 ms | {"detail":{"code":"too_many_attempts","message":"Too many failed attempts. Please try again in 15 minutes."}}
+PASS | health check                                   | GET    /health                            | expected 200 got 200 |    3.5 ms | {"status":"ok"}
+PASS | public site content (no login needed)          | GET    /public/site-content               | expected 200 got 200 |    5.7 ms | [{"key":"hero","label":"Hero","content":{"body":"","items":[],"title":"Your company's knowledge, one question ...
+PASS | SuperAdmin creates a company                   | POST   /superadmin/companies              | expected 201 got 201 |  130.3 ms | {"company":{"id":"ece64f77-d2aa-4ee1-aec4-bc7485c79988","name":"Rest-d9eb8c"},"admin":{"id":"80bb9bd5-d9af-499...
+PASS | duplicate admin email -> conflict              | POST   /superadmin/companies              | expected 409 got 409 |  126.9 ms | {"detail":{"code":"conflict","message":"A record with these details already exists (e.g. duplicate email or co...
+PASS | login (Company Admin)                          | POST   /auth/login                        | expected 200 got 200 |  105.4 ms | {"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4MGJiOWJkNS1kOWFmLTQ5OWUtODI1Mi1lZmJjM2QzYTkz...
+PASS | Company Admin calls SuperAdmin API (RBAC)      | GET    /superadmin/companies              | expected 403 got 403 |    3.1 ms | {"detail":{"code":"forbidden","message":"You do not have permission to perform this action."}}
+PASS | create employee                                | POST   /company/employees                 | expected 201 got 201 |  103.6 ms | {"id":"9629d791-c37a-4cc1-b970-8fc9db383c15","full_name":"Eve Employee","email":"eve-d9eb8c@x.com","role":"emp...
+PASS | create employee with short password (validation) | POST   /company/employees                 | expected 422 got 422 |    3.7 ms | {"detail":[{"type":"string_too_short","loc":["body","password"],"msg":"String should have at least 8 character...
+PASS | login (Employee)                               | POST   /auth/login                        | expected 200 got 200 |  105.9 ms | {"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5NjI5ZDc5MS1jMzdhLTRjYzEtYjk3MC04ZmM5ZGIzODNj...
+PASS | Employee calls Company Admin API (RBAC)        | GET    /company/employees                 | expected 403 got 403 |    3.2 ms | {"detail":{"code":"forbidden","message":"You do not have permission to perform this action."}}
+PASS | upload: valid .md + unsupported .exe           | POST   /company/documents                 | expected 202 got 202 |   10.1 ms | {"results":[{"filename":"hr.md","status":"queued","document_id":"46fea507-b3a5-4777-bfe8-2c029947409b","job_id...
+PASS | upload a CORRUPT pdf (accepted, fails in the worker) | POST   /company/documents                 | expected 202 got 202 |    7.3 ms | {"results":[{"filename":"broken.pdf","status":"queued","document_id":"31c76220-bd34-4c69-b83c-a72f9f874405","j...
+
+DOCUMENT STATUS AFTER PROCESSING (what the Company Admin sees):
+  broken.pdf   status=failed  user-facing message: This document could not be processed. Please check the file and try uploading it again.
+  hr.md        status=ready   user-facing message: -
+PASS | chat before the service is started             | POST   /chat/conversations                | expected 201 got 201 |    6.5 ms | {"id":"73f743a5-65a8-4402-9264-525e2dac6e6f","title":null,"exchange_count":0,"created_at":"2026-11-06T10:26:16...
+PASS | ask a question before Start -> blocked         | POST   /chat/conversations/73f743a5-65a8-4402-9264-525e2dac6e6f/messages | expected 403 got 403 |    3.4 ms | {"detail":{"code":"service_unavailable","message":"The assistant has not been started yet."}}
+PASS | start while a document has FAILED -> refused   | POST   /company/service/start             | expected 409 got 409 |    3.1 ms | {"detail":{"code":"kb_not_ready","message":"The knowledge base is not ready yet."}}
+PASS | delete the failed document                     | DELETE /company/documents/31c76220-bd34-4c69-b83c-a72f9f874405 | expected 200 got 200 |    9.3 ms | {"ok":true}
+PASS | start the service                              | POST   /company/service/start             | expected 200 got 200 |   10.2 ms | {"chatbot_state":"started"}
+PASS | ask a question (RAG answer)                    | POST   /chat/conversations/73f743a5-65a8-4402-9264-525e2dac6e6f/messages | expected 200 got 200 |   26.9 ms | {"message_id":"dc81fb94-b1ae-4f27-bb9c-423f7a7a6f31","exchange_no":1,"answer":"Based on the company documents:...
+PASS | ask an empty question (validation)             | POST   /chat/conversations/73f743a5-65a8-4402-9264-525e2dac6e6f/messages | expected 422 got 422 |    2.4 ms | {"detail":[{"type":"string_too_short","loc":["body","question"],"msg":"String should have at least 1 character...
+PASS | open a conversation that does not exist        | GET    /chat/conversations/4eed6ea9-710e-4040-8f65-3c4f8c663dd9 | expected 404 got 404 |    6.1 ms | {"detail":{"code":"conversation_not_found","message":"Conversation not found."}}
+PASS | END service without confirmation (validation)  | POST   /company/service/end               | expected 422 got 422 |    3.3 ms | {"detail":[{"type":"missing","loc":["body","confirm"],"msg":"Field required","input":{}}]}
+
+REST RESULT: 32 of 32 requests behaved as specified
+
+ERROR TRACKING - technical detail kept server-side (table error_logs, SuperAdmin only), newest first:
+  10:26:15 | source=ingestion | code=PdfStreamError | message=job 3a6157a2-92db-48a3-92e4-3736a7276f12 failed | detail="PdfStreamError('Stream has ended unexpectedly')"
+  10:13:07 | source=ingestion | code=PdfStreamError | message=job 3c14fca7-6346-475b-ad0d-dd7d4e66ce8a failed | detail="PdfStreamError('Stream has ended unexpectedly')"
+  10:12:54 | source=ingestion | code=PdfStreamError | message=job 129b772c-c529-417d-aade-7e6c3bf83c3d failed | detail="PdfStreamError('Stream has ended unexpectedly')"
+
+AUDIT TRAIL (table audit_logs) - who did what, newest first:
+  10:26:16 | rest-d9eb8c@x.com            | service.start                | None
+  10:26:16 | rest-d9eb8c@x.com            | document.delete              | document
+  10:26:15 | rest-d9eb8c@x.com            | documents.upload             | None
+  10:26:15 | rest-d9eb8c@x.com            | documents.upload             | None
+  10:26:15 | rest-d9eb8c@x.com            | employee.create              | user
+  10:26:14 | superadmin@example.com       | company.create               | company
