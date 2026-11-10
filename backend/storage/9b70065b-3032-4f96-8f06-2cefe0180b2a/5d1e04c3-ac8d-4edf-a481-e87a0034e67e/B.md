@@ -1,0 +1,1 @@
+Company B sells coffee beans.
